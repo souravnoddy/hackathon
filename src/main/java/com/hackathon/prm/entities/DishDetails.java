@@ -22,6 +22,9 @@ public class DishDetails {
 
 	@Field(fielddata = true, type = FieldType.Text)
 	private String dishName;
+	
+	@Field(fielddata = true, type = FieldType.Text)
+	private String description;
 
 	@Field(fielddata = true, type = FieldType.Keyword)
 	private String sourceId;
@@ -32,6 +35,9 @@ public class DishDetails {
 	@Field(fielddata = true, type = FieldType.Text)
 	private String price;
 
+    @Field(fielddata = true,type = FieldType.Keyword)
+    private String currency;
+    
 	@Field(fielddata = true, type = FieldType.Integer)
 	private int colorCode;
 
