@@ -18,7 +18,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Document(indexName = "restaurant", type = "restaurant", createIndex = false)
+@Document(indexName = "restaurants", type = "restaurants", createIndex = false)
 public class RestaurantEntity {
 
     @Id
@@ -33,7 +33,16 @@ public class RestaurantEntity {
     @Field(fielddata = true,type = FieldType.Text)
     private String restaurantName;
     
+	@Field(fielddata = true, type = FieldType.Keyword)
+	private String sourceId;
+
+	@Field(fielddata = true, type = FieldType.Keyword)
+	private String sourceName;
+    
+    @Field(fielddata = true,type = FieldType.Keyword)
+    private String cuisine;
+    
     @Field(fielddata = true,type = FieldType.Nested)
-    private List<DishDetails> dishes;
+    private List<DishDetails> dishdetails;
  
 }
