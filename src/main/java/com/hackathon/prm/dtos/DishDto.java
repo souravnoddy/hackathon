@@ -15,6 +15,6 @@ import lombok.NoArgsConstructor;
 public class DishDto {
 	private String userId;
 	private String restaurantId;
-	//private String locationId;
+	private String sourceId;
 	private String dishId;
 }

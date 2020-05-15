@@ -33,14 +33,17 @@ public class RestaurantEntity {
     @Field(fielddata = true,type = FieldType.Text)
     private String restaurantName;
     
+    @Field(fielddata = true,type = FieldType.Keyword)
+    private String locationId;
+    
 	@Field(fielddata = true, type = FieldType.Keyword)
 	private String sourceId;
 
 	@Field(fielddata = true, type = FieldType.Keyword)
 	private String sourceName;
     
-    @Field(fielddata = true,type = FieldType.Keyword)
-    private String cuisine;
+    @Field(fielddata = true,type = FieldType.Object)
+    private List<String> cuisines;
     
     @Field(fielddata = true,type = FieldType.Nested)
     private List<DishDetails> dishdetails;
