@@ -23,18 +23,18 @@ public class PersonRestaurantManagementApplication implements CommandLineRunner 
 
 	@Override
 	public void run(String... args) throws Exception {
-		/*elasticsearchTemplate.deleteIndex(UserEntity.class);
+		elasticsearchTemplate.deleteIndex(UserEntity.class);
 		elasticsearchTemplate.createIndex(UserEntity.class);
 		elasticsearchTemplate.putMapping(UserEntity.class);
 		UserEntity userEntity = userServices.addUser(UserDetails.builder()
 				.userId("test1")
 				.password("hackathon")
 				.build());
-		System.out.println(userEntity);*/
+		System.out.println(userEntity);
 
 		elasticsearchTemplate.deleteIndex(PreferenceEntity.class);
 		elasticsearchTemplate.createIndex(PreferenceEntity.class);
 		elasticsearchTemplate.putMapping(PreferenceEntity.class);
-		preferenceSettingService.addPreference();
+		preferenceSettingService.addDummyPreferenceData();
 	}
 }

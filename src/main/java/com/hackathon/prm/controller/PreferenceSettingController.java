@@ -2,6 +2,7 @@ package com.hackathon.prm.controller;
 
 import com.hackathon.prm.dtos.PreferenceSubmitDto;
 import com.hackathon.prm.entities.PreferenceEntity;
+import com.hackathon.prm.entities.UserEntity;
 import com.hackathon.prm.services.PreferenceSettingService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +24,21 @@ public class PreferenceSettingController {
         return ResponseEntity.ok(searchPreference);
     }
 
-    @PostMapping("/submitPreference")
-    public ResponseEntity<?> submitPreference(@RequestBody PreferenceSubmitDto preferenceSubmitDto) {
-        List<PreferenceEntity> searchPreference = preferenceSettingService.submitPreference(preferenceSubmitDto);
+    @GetMapping("/searchpreferenceByUser")
+    public ResponseEntity<?> searchPreferenceByUser(@RequestParam("userId") String userId) {
+        List<PreferenceEntity> searchPreference = preferenceSettingService.getPreferenceByUser(userId);
+        return ResponseEntity.ok(searchPreference);
+    }
+
+    @PostMapping("/addPreferenceByUser")
+    public ResponseEntity<?> submitPreferenceByUser(@RequestBody PreferenceSubmitDto preferenceSubmitDto) {
+        preferenceSettingService.addPreferenceToUser(preferenceSubmitDto);
         return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/deletePreferenceByUser")
+    public ResponseEntity<?> deletePreferenceByuser(@RequestBody PreferenceSubmitDto preferenceSubmitDto) {
+        UserEntity userEntity = preferenceSettingService.deletePreferenceByUser(preferenceSubmitDto);
+        return ResponseEntity.ok(userEntity);
     }
 }
