@@ -1,0 +1,28 @@
+   
+curl -XPUT --header 'Content-Type: application/json' http://localhost:9200/restaurants -d '{
+    "mappings" : {
+      "restaurants" : {
+        "properties" : {
+          "userId" : { "type" : "keyword"},
+          "restaurantId" : { "type" : "keyword"},
+          "restaurantName" : { "type" : "text" },
+          "sourceId" : { "type" : "keyword" },
+          "sourceName" : { "type" : "keyword" },
+          "cuisine" : { "type" : "keyword" },
+          "colorCode" : { "type" : "integer" },  
+          "dishDetails" : {
+                "type" : "nested",
+                "properties" : {
+                   "dishId" : { "type" : "keyword"},
+                   "dishName" : { "type" : "text" },
+                   "sourceId" : { "type" : "keyword"},
+                   "sourceName" : { "type" : "keyword" },
+                   "price" : { "type" : "text" },
+                   "colorCode" : { "type" : "integer" }, 
+                   "specialInstruction" : { "type" : "text" } 
+              }
+            }
+            }
+          }
+        }
+}' 

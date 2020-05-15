@@ -23,8 +23,11 @@ public class DishDetails {
 	@Field(fielddata = true, type = FieldType.Text)
 	private String dishName;
 
-	@Field(fielddata = true, type = FieldType.Text)
-	private String shortDescription;
+	@Field(fielddata = true, type = FieldType.Keyword)
+	private String sourceId;
+
+	@Field(fielddata = true, type = FieldType.Keyword)
+	private String sourceName;
 
 	@Field(fielddata = true, type = FieldType.Text)
 	private String price;

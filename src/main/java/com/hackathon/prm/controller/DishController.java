@@ -22,8 +22,8 @@ public class DishController {
 
 	@PostMapping
 	public ResponseEntity<?> login(@RequestBody DishDto dishDto) {
-		log.info("find dish for userid {}, in locatioid {}, in restaurantid {} and dishid {}", dishDto.getUserId(),
-				dishDto.getLocationId(), dishDto.getRestaurantId(), dishDto.getDishId());
+		//log.info("find dish for userid {}, in locatioid {}, in restaurantid {} and dishid {}", dishDto.getUserId(),
+			///	dishDto.getLocationId(), dishDto.getRestaurantId(), dishDto.getDishId());
 		return ResponseEntity.ok(dishService.getDish(dishDto));
 	}
 }
