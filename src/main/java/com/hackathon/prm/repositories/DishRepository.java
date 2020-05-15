@@ -11,6 +11,26 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DishRepository extends ElasticsearchRepository<RestaurantEntity, String> {
 	
-	 @Query("{\"match\": {\"userId\": {\"query\": \"?0\"}}}")
-	 List<RestaurantEntity> findByDishDto(String userId);
+	 @Query("{\n" + 
+	 		"  \"bool\": {\n" + 
+	 		"    \"must\": [\n" + 
+	 		"      {\n" + 
+	 		"        \"match\": {\n" + 
+	 		"          \"userId\": \"?0\"\n" + 
+	 		"        }\n" + 
+	 		"      },\n" + 
+	 		"      {\n" + 
+	 		"        \"match\": {\n" + 
+	 		"          \"restaurantId\": \"?1\"\n" + 
+	 		"        }\n" + 
+	 		"      },\n" + 
+	 		"      {\n" + 
+	 		"        \"match\": {\n" + 
+	 		"         \"sourceId\": \"?2\"\n" + 
+	 		"        }\n" + 
+	 		"      }\n" + 
+	 		"    ]\n" + 
+	 		"  }\n" + 
+	 		"}")
+	 RestaurantEntity findByDishDtoCustomQuery(String userId, String restaurantId, String sourceId);
 }
