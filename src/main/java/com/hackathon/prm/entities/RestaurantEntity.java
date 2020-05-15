@@ -10,6 +10,7 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
+import java.util.List;
 import java.util.UUID;
 
 @Builder(toBuilder = true)
@@ -18,30 +19,21 @@ import java.util.UUID;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Document(indexName = "restaurant", type = "restaurant", createIndex = false)
-public class DishEntity {
+public class RestaurantEntity {
 
     @Id
     private String id = UUID.randomUUID().toString();
 
-    @Field(fielddata = true,type = FieldType.Text)
-    private String name;
+    @Field(fielddata = true,type = FieldType.Keyword)
+    private String userId;
    
-    @Field(fielddata = true,type = FieldType.Text)
-    private String shortDescription;
-   
-    @Field(fielddata = true,type = FieldType.Text)
+    @Field(fielddata = true,type = FieldType.Keyword)
     private String restaurantId;
     
     @Field(fielddata = true,type = FieldType.Text)
     private String restaurantName;
     
-    @Field(fielddata = true,type = FieldType.Text)
-    private String price;
-    
-    @Field(fielddata = true,type = FieldType.Integer)
-    private int colorCode;
-    
-    @Field(fielddata = true,type = FieldType.Text)
-    private int specialinstruction;
-
+    @Field(fielddata = true,type = FieldType.Nested)
+    private List<DishDetails> dishes;
+ 
 }
