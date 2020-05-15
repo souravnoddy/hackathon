@@ -15,11 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/v1/prm/login")
 public class UserController {
 
-    @Autowired private UserServices userServices;
+    @Autowired
+    private UserServices userServices;
 
     @PostMapping
-    public ResponseEntity<?> login(@RequestBody UserDetails userDetails){
-        log.info("User {} attempted login at {}",userDetails.getUserId(),userDetails.getTimestamp());
+    public ResponseEntity<?> login(@RequestBody UserDetails userDetails) {
+        log.info("User {} attempted login at {}", userDetails.getUserId(), userDetails.getTimestamp());
         return userServices.validateLogin(userDetails);
     }
 }
