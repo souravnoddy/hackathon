@@ -18,8 +18,6 @@ curl -XPUT --header 'Content-Type: application/json' http://localhost:9200/resta
                    "dishId" : { "type" : "keyword"},
                    "dishName" : { "type" : "text" },
 		           "description" : { "type" : "text" },
-                   "sourceId" : { "type" : "keyword"},
-                   "sourceName" : { "type" : "keyword" },
                    "price" : { "type" : "text" },
                    "currency" : { "type" : "keyword" },
                    "colorCode" : { "type" : "integer" }, 
@@ -31,4 +29,29 @@ curl -XPUT --header 'Content-Type: application/json' http://localhost:9200/resta
         }
 }' 
 
-curl -X PUT "localhost:9200/restaurants/restaurants/_bulk?pretty" -H 'Content-Type: application/x-ndjson' --data-binary @esrestaurantsdata.json.json
+curl -XPUT --header 'Content-Type: application/json' http://localhost:9200/orders -d '{
+    "mappings" : {
+      "orders" : {
+        "properties" : {
+          "userId" : { "type" : "keyword"},
+          "restaurantId" : { "type" : "keyword"},
+          "restaurantName" : { "type" : "text" },
+          "sourceId" : { "type" : "keyword" },
+          "locationId" : { "type" : "keyword" },
+          "sourceName" : { "type" : "keyword" },
+          "orderedDishes" : {
+                "type" : "nested",
+                "properties" : {
+                   "dishId" : { "type" : "keyword"},
+                   "dishName" : { "type" : "text" },
+                   "price" : { "type" : "text" },
+                   "currency" : { "type" : "keyword" },
+                   "specialInstruction" : { "type" : "text" } 
+              }
+            }
+            }
+          }
+        }
+}' 
+
+curl -X PUT "localhost:9200/restaurants/restaurants/_bulk?pretty" -H 'Content-Type: application/x-ndjson' --data-binary @esrestaurantsdata.json
