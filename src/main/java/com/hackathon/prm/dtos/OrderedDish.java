@@ -16,6 +16,6 @@ public class OrderedDish {
 	private String dishName;
 	private String price;
 	private String currency;
-	private String specialInstruction;
+	private String specialInstructions;
 
 }

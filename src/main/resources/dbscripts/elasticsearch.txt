@@ -21,7 +21,7 @@ curl -XPUT --header 'Content-Type: application/json' http://localhost:9200/resta
                    "price" : { "type" : "text" },
                    "currency" : { "type" : "keyword" },
                    "colorCode" : { "type" : "integer" }, 
-                   "specialInstruction" : { "type" : "text" } 
+                   "specialInstructions" : { "type" : "text" } 
               }
             }
             }
@@ -46,7 +46,7 @@ curl -XPUT --header 'Content-Type: application/json' http://localhost:9200/order
                    "dishName" : { "type" : "text" },
                    "price" : { "type" : "text" },
                    "currency" : { "type" : "keyword" },
-                   "specialInstruction" : { "type" : "text" } 
+                   "specialInstructions" : { "type" : "text" } 
               }
             }
             }
