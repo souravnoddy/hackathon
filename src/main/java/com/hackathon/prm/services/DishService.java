@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import com.hackathon.prm.dtos.DishDto;
+import com.hackathon.prm.entities.DishDetail;
 import com.hackathon.prm.entities.RestaurantEntity;
 import com.hackathon.prm.repositories.DishRepository;
 
@@ -16,25 +18,22 @@ public class DishService {
 
 	public RestaurantEntity getDish(DishDto dishDto) {
 
-		List<RestaurantEntity> restaurantEntities = dishRepository.findByDishDto(dishDto.getUserId());
-
-		System.out.println("restaurantEntities ::" + restaurantEntities);
+		RestaurantEntity restaurantEntity = dishRepository.findByDishDtoCustomQuery(dishDto.getUserId(),
+				dishDto.getRestaurantId(), dishDto.getSourceId());
+		if (restaurantEntity != null) {
+			DishDetail dishDetail = getDishDetail(restaurantEntity.getDishDetails(), dishDto.getDishId());
+			restaurantEntity.getDishDetails().clear();
+			restaurantEntity.getDishDetails().add(dishDetail);
+			return restaurantEntity;
+		}
 		return null;
 	}
 
-	/*
-	 * public void addPreference() {
-	 * 
-	 * List<PreferenceEntity> dummyData = new ArrayList<>();
-	 * 
-	 * List<String> preference = Arrays.asList("Less Oily", "Medium Oily",
-	 * "Less Spicy", "Moderate Spicy", "Spicy");
-	 * 
-	 * preference.stream().forEach(p -> { PreferenceEntity build =
-	 * PreferenceEntity.builder().preferenceName(p).build(); PreferenceEntity save =
-	 * preferenceRepository.save(build); System.out.println(save); }); }
-	 * 
-	 * public List<PreferenceEntity> submitPreference(PreferenceSubmitDto
-	 * preferenceSubmitDto) { // TODO: 2020-05-15 return null; }
-	 */
+	private DishDetail getDishDetail(List<DishDetail> dishDetails, String dishId) {
+		if (!CollectionUtils.isEmpty(dishDetails)) {
+			return dishDetails.stream().filter(dishDetail -> dishDetail.getDishId().equals(dishId)).findFirst().get();
+		}
+		return null;
+	}
+
 }

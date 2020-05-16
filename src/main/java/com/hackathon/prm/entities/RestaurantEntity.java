@@ -46,6 +46,6 @@ public class RestaurantEntity {
     private List<String> cuisines;
     
     @Field(fielddata = true,type = FieldType.Nested)
-    private List<DishDetails> dishdetails;
+    private List<DishDetail> dishDetails;
  
 }

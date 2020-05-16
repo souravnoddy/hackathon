@@ -18,10 +18,11 @@ public class DishController {
     @Autowired
     private DishService dishService;
 
-    @PostMapping
-    public ResponseEntity<?> login(@RequestBody DishDto dishDto) {
-        log.info("find dish for userid {}, in sourceid {}, in restaurantid {} and dishid {}", dishDto.getUserId(),
-                dishDto.getSourceId(), dishDto.getRestaurantId(), dishDto.getDishId());
-        return ResponseEntity.ok(dishService.getDish(dishDto));
-    }
+	@PostMapping
+	public ResponseEntity<?> getDishDetail(@RequestBody DishDto dishDto) {
+		log.info("find dish for userid {}, in sourceid {}, in restaurantid {} and dishid {}", dishDto.getUserId(),
+				dishDto.getSourceId(), dishDto.getRestaurantId(), dishDto.getDishId());
+		return ResponseEntity.ok(dishService.getDish(dishDto));
+	}
+
 }
