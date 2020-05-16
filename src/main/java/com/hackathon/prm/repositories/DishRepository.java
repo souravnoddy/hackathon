@@ -2,7 +2,7 @@ package com.hackathon.prm.repositories;
 
 import com.hackathon.prm.entities.RestaurantEntity;
 
-import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.elasticsearch.annotations.Query;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
@@ -33,4 +33,6 @@ public interface DishRepository extends ElasticsearchRepository<RestaurantEntity
 	 		"  }\n" + 
 	 		"}")
 	 RestaurantEntity findByDishDtoCustomQuery(String userId, String restaurantId, String sourceId);
+	 
+	 Optional<RestaurantEntity> findById(String id);
 }

@@ -20,6 +20,6 @@ public class DishDetail {
 	private String price;
 	private String currency;
 	private int colorCode;
-	private String specialInstruction;
+	private String specialInstructions;
 	
 }

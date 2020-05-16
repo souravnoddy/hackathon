@@ -13,8 +13,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DishDto {
+	private String id;
 	private String userId;
 	private String restaurantId;
 	private String sourceId;
 	private String dishId;
+	private int colorCode;
+	private String specialInstructions;
 }
