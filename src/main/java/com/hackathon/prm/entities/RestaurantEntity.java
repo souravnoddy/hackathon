@@ -45,6 +45,9 @@ public class RestaurantEntity {
     @Field(fielddata = true,type = FieldType.Object)
     private List<String> cuisines;
     
+    @Field(fielddata = true,type = FieldType.Integer)
+    private int colorCode;
+    
     @Field(fielddata = true,type = FieldType.Nested)
     private List<DishDetail> dishDetails;
  
