@@ -3,6 +3,7 @@ package com.hackathon.prm;
 import com.hackathon.prm.dtos.UserDetails;
 import com.hackathon.prm.entities.PreferenceEntity;
 import com.hackathon.prm.entities.UserEntity;
+import com.hackathon.prm.repositories.PreferenceRepository;
 import com.hackathon.prm.services.PreferenceSettingService;
 import com.hackathon.prm.services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +18,23 @@ public class PersonRestaurantManagementApplication implements CommandLineRunner 
 	@Autowired UserServices userServices;
 	 @Autowired private ElasticsearchTemplate elasticsearchTemplate;
 	 @Autowired private PreferenceSettingService preferenceSettingService;
+	 @Autowired private PreferenceRepository preferenceRepository;
 	public static void main(String[] args) {
 		SpringApplication.run(PersonRestaurantManagementApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		/*elasticsearchTemplate.deleteIndex(UserEntity.class);
+		getPreferences();
+		//firstTimerunningTool();
+	}
+
+	private void getPreferences() {
+		preferenceRepository.findAll().forEach(System.out::println);
+	}
+
+	private void firstTimerunningTool() {
+		elasticsearchTemplate.deleteIndex(UserEntity.class);
 		elasticsearchTemplate.createIndex(UserEntity.class);
 		elasticsearchTemplate.putMapping(UserEntity.class);
 		UserEntity userEntity = userServices.addUser(UserDetails.builder()
@@ -35,6 +46,6 @@ public class PersonRestaurantManagementApplication implements CommandLineRunner 
 		elasticsearchTemplate.deleteIndex(PreferenceEntity.class);
 		elasticsearchTemplate.createIndex(PreferenceEntity.class);
 		elasticsearchTemplate.putMapping(PreferenceEntity.class);
-		preferenceSettingService.addDummyPreferenceData();*/
+		preferenceSettingService.addDummyPreferenceData();
 	}
 }

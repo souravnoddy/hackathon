@@ -27,11 +27,11 @@ public class SwaggerConfig {
     }
 
     private ApiInfo apiInfo() {
-        return new ApiInfoBuilder().title("JavaInUse API")
-                .description("JavaInUse API reference for developers")
-                .termsOfServiceUrl("http://javainuse.com")
-                .contact("javainuse@gmail.com").license("JavaInUse License")
-                .licenseUrl("javainuse@gmail.com").version("1.0").build();
+        return new ApiInfoBuilder().title("PRM API")
+                .description("Person Restaurant Management reference for UI developers")
+                .termsOfServiceUrl("http://nineleaps.com")
+                .contact("sourav.purohit@nineleaps.com").license("Nineleaps")
+                .licenseUrl("sourav.purohit@gmail.com").version("1.0").build();
     }
 
 }
