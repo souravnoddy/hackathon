@@ -14,9 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -93,6 +95,9 @@ public class PreferenceSettingService {
                         .search(
                                 boolQueryBuilder, PageRequest.of(0, 1, Sort.by(Sort.Direction.ASC, "userId")))
                         .getContent();
+        if(CollectionUtils.isEmpty(userEntities)){
+            throw  new RuntimeException("User Not Found");
+        }
         return userEntities.get(0);
     }
 
